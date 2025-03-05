@@ -50,7 +50,7 @@ const MobileMenu = ({ isMenuOpen, setIsMenuOpen }) => {
   }, [isMenuOpen]);
 
   return (
-    <div ref={menuRef} className="fixed top-0 left-0 w-full h-screen bg-black transform -translate-y-full z-40">
+    <div ref={menuRef} className="fixed top-0 left-0 w-full h-screen bg-black  transform -translate-y-full z-40">
       <div className="flex flex-col items-center justify-center h-full space-y-8 text-3xl font-bold">
         {navItems.map((item, index) => (
           <Link
@@ -91,17 +91,6 @@ const Nav = () => {
         ease: "power2.out",
       }
     );
-    // gsap.To(
-    //   navContainerRef.current,  
-    //   {
-    //     opacity: 1,
-    //     y: 0,
-    //     stagger: 1, // Stagger items by 0.1 seconds
-    //     duration: 2,
-    //     delay:2,
-    //     ease: "power2.out",
-    //   }
-    //  );
 
     const loggedInStatus = localStorage.getItem('isLoggedIn');
     if (loggedInStatus === 'true') {
@@ -142,19 +131,19 @@ const Nav = () => {
 
   return (
     <>
-      <div ref={navContainerRef} className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6">
+      <div ref={navContainerRef} className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6 overflow-hidden">
         <header className="absolute top-1/2 w-full -translate-y-1/2">
           <nav className="flex w-full items-center justify-between px-4 py-2">
             <div className="flex items-center gap-4">
                 <Menu item={{ image: "/images/logo.png " }} cla="w-32 md:w-48  object-contain " />
                 
-
+              <Link to="/product">
               <Button
                 id="product-button"
                 title="Products"
                 rightIcon={<TiLocationArrow />}
                 containerClass="hidden md:flex items-center gap-1 bg-violet-100 px-4 py-2 rounded-lg hover:bg-violet-200"
-              />
+              /> </Link>
             </div>
 
             <div className=" nav hidden md:flex items-center gap-8">
@@ -167,10 +156,10 @@ const Nav = () => {
               </Link>
 
               {/* Conditionally render Login/Logout or User Icon */}
-              {!isLoggedIn ? (
-                <button onClick={handleLoginClick} className="nav-link hover:text-violet-600">
+                  {!isLoggedIn ? (
+             <Link to="/login">     <button onClick={handleLoginClick} className="nav-link hover:text-violet-600">
                   Login
-                </button>
+                </button>  </Link>
               ) : (
                 <button onClick={handleLogoutClick} className="nav-link hover:text-violet-600">
                   Logout

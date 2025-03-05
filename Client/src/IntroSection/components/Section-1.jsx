@@ -14,14 +14,11 @@ useEffect(() => {
  
   const tl = gsap.timeline();
 
-  tl.from(
+  tl.fromTo(
     ".interval",{
-      y: 300,
-      opacity: 0,
-      duration: 1,
-      stagger: 1, 
-      ease: "power2.out",
-    }
+      y: 300, opacity: 0,
+    },{ duration: 1, stagger: 1, delay:2, opacity:1, y:0,
+      ease: "power2.out",}
    )
    tl.fromTo(
     ".tex",

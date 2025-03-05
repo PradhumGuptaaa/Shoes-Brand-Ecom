@@ -116,7 +116,7 @@ const IntroSection2 = () => {
           yoyo:true,
         })
         .to(scene.current.position, {
-          x: 30,
+          x: 35,
           y: 10,
           z: -10,
           scrollTrigger: {

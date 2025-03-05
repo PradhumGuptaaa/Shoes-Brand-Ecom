@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './Navbar/Nav.jsx';
 import Home from './Home.jsx'
-import Signup from './Pages/LoginPage.jsx';
+import Products from './Pages/ProductPage.jsx'
+import Cart from './Pages/CartPage.jsx'
+import Login from './Pages/LoginPage.jsx';
 import Footers from './Footer/Footer.jsx';
-import AdvertisingSection from './AdvertisingSection/AdvertisingSection.jsx';
 import Trial from './Trial.jsx'
 
 const App = () => {
@@ -16,10 +17,11 @@ const App = () => {
         <div className=""> 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/product" element={<Products />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
-        {/* <AdvertisingSection/> */}
         <Footers />
         {/* <Trial/> */}
       </div>
@@ -29,7 +31,7 @@ const App = () => {
 
 export default App;
 
-
+    // LOCOMOTIVE JS  SCROLL ANIMATION
 
 // import React, { useEffect, useRef } from 'react';
 // import { BrowserRouter, Route, Routes } from 'react-router-dom';
