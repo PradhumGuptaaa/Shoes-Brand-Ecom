@@ -87,7 +87,7 @@ const Nav = () => {
         y: 0,
         stagger: 1, // Stagger items by 0.1 seconds
         duration: 2,
-        delay:2,
+        delay:3,
         ease: "power2.out",
       }
     );

@@ -67,16 +67,6 @@ body {
      font-family: "general"; /*//zentry */
     font-feature-settings: "ss01" on;
   }
-  html.has-scroll-smooth {
-    overflow: hidden;
-  }
-  
-  html.has-scroll-dragging {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
 
   .hero-heading {
     @apply uppercase  font-black text-5xl sm:right-10 sm:text-8xl md:text-8xl lg:text-[7rem];

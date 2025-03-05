@@ -61,13 +61,10 @@ const IntroSection2 = () => {
       'shoes.glb', 
       (gltf) => {
         if (shoe.current) return; 
-        console.log("Model loaded:", gltf); // Debugging model load
 
         shoe.current = gltf.scene;
         shoe.current.position.set(-7, -3, 30);
         shoe.current.rotation.set(-1, 0, 0);
-        // shoe.current.position.set(-5, 0, 0); // Centered position
-        // shoe.current.rotation.set(-1.5, 0.5, 1.55);
         scene.current.add(shoe.current);
 
   

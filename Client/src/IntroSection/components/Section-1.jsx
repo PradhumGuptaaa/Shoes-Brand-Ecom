@@ -15,9 +15,9 @@ useEffect(() => {
   const tl = gsap.timeline();
 
   tl.fromTo(
-    ".interval",{
-      y: 300, opacity: 0,
-    },{ duration: 1, stagger: 1, delay:2, opacity:1, y:0,
+    ".interval span",{
+      y: 50, opacity: 0,
+    },{ duration: 0.5, stagger: 0.2, delay:2.2, opacity:1, y:0,
       ease: "power2.out",}
    )
    tl.fromTo(
@@ -26,21 +26,21 @@ useEffect(() => {
     {
       x:0,
       opacity: 1,
-      duration: 1, delay:2, stagger: 0.2, ease: "power3.out",
+      duration: 1, delay:0.5, stagger: 0.2, ease: "power3.out",
     },"a"
   )
   tl.fromTo(
     ".tex2",
-    { x: 500, opacity: 0,  },
+    { x: 500, opacity: 0, },
     {
       x:0,
       opacity: 1,
-      duration: 1, delay:2,  ease: "power2.out",
+      duration: 1, delay:0.5,stagger:0.2,  ease: "power2.out",
     },"a"
   )
   tl.from(
     Menu1.current,
-    { x: -100, opacity: 0, duration: 1,  delay:2,stagger: 0.2, ease: "power1.out", },"a"
+    { x: -100, opacity: 0, duration: 1,  delay:0.5,stagger: 0.2, ease: "power1.out", },"a"
   )
 
  
@@ -49,12 +49,12 @@ useEffect(() => {
   return (
 <>
 <div className="flex justify-center items-center min-h-screen relative bg-red-200" >
-  <div className=" p-10 rounded-xl flex flex-col md:flex-row items-center min-w-[85%] ">
+  <div className=" p-15 rounded-xl flex flex-col md:flex-row items-center min-w-[85%] ">
     {/* Left Section */}
     <div className="relative md:w-1/2 text-center md:text-left max-md:top-[10vh]">
       <h1 className="text-6xl font-bold ">
         <span className="tex text-black text-7xl  ">Step  into </span>
-        <span className="interval text-7xl px-4 " style={mycolor}>Style</span>  <br />
+        <span className="interval px-4"><span>S</span><span>t</span><span>y</span><span>l</span><span>e</span></span>  <br />
          <div className="tex"> with every stride </div>
       </h1>
       <p className="tex text-gray-800 mt-9 text-[18px]">
@@ -107,6 +107,12 @@ useEffect(() => {
     </div>
   </div>
 </div>
+<style>{`
+ .interval span{
+    font-size:80px;
+    color:#ff266e;
+ }
+`}</style>
      </>
  );
 };

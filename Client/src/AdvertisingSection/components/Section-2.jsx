@@ -111,11 +111,11 @@ const Section2 = () => {
                 <img src="brand6.svg" alt="" className='h-[6vh] mx-[1.2vw]' />
                 <img src="/brand3" alt="" className='h-[6vh] mx-[1.2vw]' />
                 <img src="/brand2.svg" alt="" className='h-[6vh] mx-[1.2vw]' />
-                <img src="/brand7.svg" alt="" className='h-[6vh] mx-[1.2vw]' />
+                <img src="https://png.pngtree.com/png-clipart/20231116/original/pngtree-adidas-logo-macro-photo-png-image_13593048.png" alt="" className='h-[6vh] mx-[1.2vw]' />
                 <img src="brand6.svg" alt="" className='h-[6vh] mx-[1.2vw]' />
                 <img src="/brand3" alt="" className='h-[6vh] mx-[1.2vw]' />
                 <img src="/brand2.svg" alt="" className='h-[6vh] mx-[1.2vw]' />
-                <img src="/brand7.svg" alt="" className='h-[6vh] mx-[1.2vw]' />
+                <img src="https://png.pngtree.com/png-clipart/20231116/original/pngtree-adidas-logo-macro-photo-png-image_13593048.png" alt="" className='h-[6vh] mx-[1.2vw]' />
                 <img src="brand6.svg" alt="" className='h-[6vh] mx-[1.2vw]' />
               </div>
             </div>
