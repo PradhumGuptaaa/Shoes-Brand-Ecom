@@ -15,7 +15,7 @@ app.use(express.json());  // For parsing application/json
 
 // User Route
 const UserRoute = require("./Routes/User");
-app.use('/User', UserRoute);
+app.use('/auth', UserRoute);
 
 const adminProductsRouter = require("./Routes/admin/products-routes");
 app.use("/api/admin/products", adminProductsRouter);
@@ -44,8 +44,8 @@ const shopReviewRouter = require("./Routes/shop/review-routes");
 app.use("/api/shop/review", shopReviewRouter);
 
 
-// const commonFeatureRouter = require("./Routes/common/feature-routes");
-// app.use("/api/common/feature", commonFeatureRouter);
+const commonFeatureRouter = require("./Routes/common/feature-routes");
+app.use("/api/common/feature", commonFeatureRouter);
 
 app.get('/', function (req, res) {
     res.send("hello world");

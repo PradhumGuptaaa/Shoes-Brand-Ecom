@@ -1,2 +1,0 @@
-hero-1.mp4 filter=lfs diff=lfs merge=lfs -text
-shoes.glb filter=lfs diff=lfs merge=lfs -text

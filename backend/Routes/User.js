@@ -6,7 +6,7 @@ const UserCollection = require('../models/UserCollection');
 const { JWTmiddelware, createToken } = require('../jwt');
 const router = express.Router();
 
-router.post('/SignUp' , async(req,res)=>{
+router.post('/register' , async(req,res)=>{
     try {
         const data = req.body;
         console.log(data)
@@ -20,7 +20,7 @@ router.post('/SignUp' , async(req,res)=>{
  
 });
 
-router.post("/SignIn", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
       const { email, password } = req.body;
 

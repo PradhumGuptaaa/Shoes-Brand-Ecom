@@ -7,18 +7,26 @@ const handleImageUpload = async (req, res) => {
     const url = "data:" + req.file.mimetype + ";base64," + b64;
     const result = await imageUploadUtil(url);
 
-    res.json({
-      success: true,
-      result,
-    });
+    if (result && result.secure_url) {
+      res.json({
+        success: true,
+        result: { url: result.secure_url }, // Make sure result.secure_url is returned
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: "Failed to get image URL from Cloudinary",
+      });
+    }
   } catch (error) {
     console.log(error);
-    res.json({
+    res.status(500).json({
       success: false,
-      message: "Error occured",
+      message: "Error occurred while uploading the image",
     });
   }
 };
+
 
 //add a new product
 const addProduct = async (req, res) => {
