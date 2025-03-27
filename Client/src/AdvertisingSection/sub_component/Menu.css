@@ -1,0 +1,43 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    padding: 5px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hover-this {
+    transition: all 0.3s ease;
+}
+
+span {
+    display: inline-flex;
+    font-family: "Monument Extended";
+    color: #fff;
+    font-size: 20px;
+    pointer-events: none;
+    transition: transform 0.1s linear;
+}
+
+
+@media(min-width: 900px) {
+    nav {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+@media(max-width: 900px) {
+    nav {
+        top: 30%;
+    }
+
+    .hover-this {
+        width: 100%;
+        padding: 20px 0;
+        display: inline-block;
+    }
+}
