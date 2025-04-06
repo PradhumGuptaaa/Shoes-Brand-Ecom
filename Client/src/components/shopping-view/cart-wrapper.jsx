@@ -121,6 +121,7 @@ import {
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import UserCartItemsContent from "./cart-items-content";
+import { ShoppingCart } from "lucide-react";
 
 const UserCartWrapper = ({ setOpenCartSheet }) => {
   const dispatch = useDispatch();
@@ -141,34 +142,49 @@ const UserCartWrapper = ({ setOpenCartSheet }) => {
   return (
     <SheetContent
       side="right"
-      className="w-full sm:w-[90%] md:w-[600px] lg:w-[640px] max-w-[640px] overflow-y-auto px-4 sm:px-6 py-6"
+      className="w-full sm:w-[90%] md:w-[600px] lg:w-[640px] max-w-[640px] px-6 py-6 flex flex-col justify-between bg-white"
     >
-      <SheetHeader>
-        <SheetTitle className="text-xl font-bold">Your Cart</SheetTitle>
-        <SheetDescription>Review your items before checkout.</SheetDescription>
-      </SheetHeader>
+      {/* Cart Header */}
+      <div>
+        <SheetHeader>
+          <SheetTitle className="text-[22px] font-bold tracking-tight text-black">
+            Shopping Cart
+          </SheetTitle>
+          <SheetDescription className="text-sm text-gray-500">
+            Your selected items are listed below.
+          </SheetDescription>
+        </SheetHeader>
 
-      <div className="flex flex-col mt-6 gap-4">
-        {cartItems?.items?.length > 0 ? (
-          cartItems.items.map((item, index) => (
-            <UserCartItemsContent
-              key={item.productId || index}
-              cartItem={item}
-            />
-          ))
-        ) : (
-          <p className="text-center text-gray-500 mt-6">Your cart is empty.</p>
-        )}
+        {/* Cart Items */}
+        <div className="mt-6 flex flex-col gap-5 max-h-[60vh] overflow-y-auto pr-2">
+          {cartItems?.items?.length > 0 ? (
+            cartItems.items.map((item, index) => (
+              <UserCartItemsContent
+                key={item.productId || index}
+                cartItem={item}
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center mt-24 text-gray-500">
+              <ShoppingCart className="w-12 h-12 mb-3 text-gray-400" />
+              <p className="text-lg font-medium">Your cart is currently empty</p>
+              <p className="text-sm mt-1">Start adding your favorite pairs!</p>
+            </div>
+          )}
+        </div>
       </div>
 
+      {/* Checkout Section */}
       {cartItems?.items?.length > 0 && (
-        <div className="mt-8 space-y-4 border-t pt-4">
-          <div className="flex justify-between text-lg font-semibold">
-            <span>Total:</span>
+        <div className="border-t pt-4 mt-6 sticky bottom-0 bg-white">
+          <div className="flex justify-between text-base font-medium text-gray-800 mb-4">
+            <span>Total Amount</span>
             <span>${totalAmount.toFixed(2)}</span>
           </div>
-
-          <Button onClick={handleCheckoutClick} className="w-full">
+          <Button
+            onClick={handleCheckoutClick}
+            className="w-full bg-black text-white rounded-xl py-2 text-base hover:bg-gray-900 transition-all"
+          >
             Proceed to Checkout
           </Button>
         </div>
@@ -178,4 +194,3 @@ const UserCartWrapper = ({ setOpenCartSheet }) => {
 };
 
 export default UserCartWrapper;
-
