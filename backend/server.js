@@ -7,7 +7,17 @@ require('dotenv').config();
 const UserCollection = require('./models/UserCollection');
 const cors = require('cors');
 const app = express();
-app.use(cors());
+// app.use(cors());
+
+
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // ✅ Frontend origin
+    credentials: true,              // ✅ Important for cookies
+  })
+);
+
 app.use(cookieParser());
 
 const PORT = process.env.PORT || 3000;
@@ -28,14 +38,14 @@ const shopProductsRouter = require("./Routes/shop/products-routes");
 app.use("/api/shop/products", shopProductsRouter);
 
 
-// const shopCartRouter = require("./Routes/shop/cart-routes");
-// app.use("/api/shop/cart", shopCartRouter);
+const shopCartRouter = require("./Routes/shop/cart-routes");
+app.use("/api/shop/cart", shopCartRouter);
 
 const shopAddressRouter = require("./Routes/shop/address-routes");
 app.use("/api/shop/address", shopAddressRouter);
 
-// const shopOrderRouter = require("./Routes/shop/order-routes");
-// app.use("/api/shop/order", shopOrderRouter);
+const shopOrderRouter = require("./Routes/shop/order-routes");
+app.use("/api/shop/order", shopOrderRouter);
 
 const shopSearchRouter = require("./Routes/shop/search-routes");
 app.use("/api/shop/search", shopSearchRouter);

@@ -1,0 +1,80 @@
+/* CommonForm.css */
+
+/* Container styles */
+.common-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  /* Form group (label and input wrapper) */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Input field styles */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    padding: 0.75rem;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Textarea specific styles */
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  /* Select dropdown specific styles */
+  .form-select {
+    background-color: white;
+    color: black;
+  }
+  
+  .form-select option {
+    padding: 0.5rem;
+  }
+  
+  /* Button styles */
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

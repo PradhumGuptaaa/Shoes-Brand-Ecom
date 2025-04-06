@@ -3,14 +3,23 @@ const Product = require("../../models/Product");
 
 const handleImageUpload = async (req, res) => {
   try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "No file uploaded!",
+      });
+    }
+
     const b64 = Buffer.from(req.file.buffer).toString("base64");
     const url = "data:" + req.file.mimetype + ";base64," + b64;
     const result = await imageUploadUtil(url);
 
+    console.log("Cloudinary Response:", result); // 🔍 Debugging
+
     if (result && result.secure_url) {
       res.json({
         success: true,
-        result: { url: result.secure_url }, // Make sure result.secure_url is returned
+        result: { url: result.secure_url },
       });
     } else {
       res.status(400).json({
@@ -19,13 +28,14 @@ const handleImageUpload = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.error("Image Upload Error:", error);
     res.status(500).json({
       success: false,
       message: "Error occurred while uploading the image",
     });
   }
 };
+
 
 
 //add a new product

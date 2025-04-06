@@ -2,7 +2,7 @@ const app = require('express');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
-const UserCollection = require('./Models/UserCollection');
+const UserCollection = require('./models/UserCollection');
 
 app.use(passport.initialize());
 

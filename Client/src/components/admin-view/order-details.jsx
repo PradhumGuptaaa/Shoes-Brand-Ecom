@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CommonForm from "../common/form";
 import { DialogContent } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getAllOrdersForAdmin,
   getOrderDetailsForAdmin,
@@ -18,11 +18,21 @@ const initialFormData = {
 
 function AdminOrderDetailsView({ orderDetails }) {
   const [formData, setFormData] = useState(initialFormData);
-  const { user } = useSelector((state) => state.auth);
+  const [fullName, setFullName] = useState("");
   const dispatch = useDispatch();
   const { toast } = useToast();
 
-  console.log(orderDetails, "orderDetailsorderDetails");
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setFullName(parsedUser.fullName || "Unknown User");
+      } catch (err) {
+        console.error("Failed to parse user from localStorage:", err);
+      }
+    }
+  }, []);
 
   function handleUpdateStatus(event) {
     event.preventDefault();
@@ -43,7 +53,7 @@ function AdminOrderDetailsView({ orderDetails }) {
   }
 
   return (
-    <DialogContent className="sm:max-w-[600px]">
+    <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto text-black">
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">
@@ -52,7 +62,7 @@ function AdminOrderDetailsView({ orderDetails }) {
           </div>
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Order Date</p>
-            <Label>{orderDetails?.orderDate.split("T")[0]}</Label>
+            <Label>{orderDetails?.orderDate?.split("T")[0]}</Label>
           </div>
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Order Price</p>
@@ -70,7 +80,7 @@ function AdminOrderDetailsView({ orderDetails }) {
             <p className="font-medium">Order Status</p>
             <Label>
               <Badge
-                className={`py-1 px-3 ${
+                className={`py-1 px-3 text-white ${
                   orderDetails?.orderStatus === "confirmed"
                     ? "bg-green-500"
                     : orderDetails?.orderStatus === "rejected"
@@ -83,37 +93,75 @@ function AdminOrderDetailsView({ orderDetails }) {
             </Label>
           </div>
         </div>
-        <Separator />
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <div className="font-medium">Order Details</div>
-            <ul className="grid gap-3">
-              {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
-                ? orderDetails?.cartItems.map((item) => (
-                    <li className="flex items-center justify-between">
-                      <span>Title: {item.title}</span>
-                      <span>Quantity: {item.quantity}</span>
-                      <span>Price: ${item.price}</span>
-                    </li>
-                  ))
-                : null}
-            </ul>
-          </div>
-        </div>
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <div className="font-medium">Shipping Info</div>
-            <div className="grid gap-0.5 text-muted-foreground">
-              <span>{user.userName}</span>
-              <span>{orderDetails?.addressInfo?.address}</span>
-              <span>{orderDetails?.addressInfo?.city}</span>
-              <span>{orderDetails?.addressInfo?.pincode}</span>
-              <span>{orderDetails?.addressInfo?.phone}</span>
-              <span>{orderDetails?.addressInfo?.notes}</span>
-            </div>
-          </div>
-        </div>
 
+        <Separator />
+
+{/* ✅ Order Details (Improved) */}
+<div className="grid gap-4">
+  <div className="font-semibold text-lg text-gray-800">Order Details</div>
+  <ul className="grid gap-3">
+    {orderDetails?.cartItems && orderDetails.cartItems.length > 0 ? (
+      orderDetails.cartItems.map((item, index) => (
+        <li
+          key={index}
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border border-gray-300 bg-gray-100 p-4 rounded-lg shadow-sm"
+        >
+          <span className="text-[15px] text-gray-700">
+            <span className="inline-block w-[70px] font-medium text-gray-600">Title:</span>
+            <span className="font-normal text-gray-900">{item.title}</span>
+          </span>
+          <span className="text-[15px] text-gray-700">
+            <span className="inline-block w-[90px] font-medium text-gray-600">Quantity:</span>
+            <span className="font-normal text-gray-900">{item.quantity}</span>
+          </span>
+          <span className="text-[15px] text-gray-700">
+            <span className="inline-block w-[90px] font-medium text-gray-600">Price:</span>
+            <span className="font-normal text-gray-900">${item.price}</span>
+          </span>
+        </li>
+      ))
+    ) : (
+      <li className="text-sm text-gray-500">No items found.</li>
+    )}
+  </ul>
+</div>
+
+
+      {/* ✅ Shipping Info (Tailwind + span only) */}
+{/* ✅ Shipping Info (Improved spacing + font) */}
+<div className="grid gap-4">
+  <div className="font-semibold text-lg text-gray-800">Shipping Info</div>
+  <div className="bg-gray-100 p-4 rounded-lg">
+    <span className="block mb-2 text-[15px] text-gray-800 font-semibold">
+      <span className="inline-block w-[100px] text-gray-600 font-medium">Name:</span>
+      <span className="text-gray-900 font-normal">{fullName}</span>
+    </span>
+    <span className="block mb-2 text-[15px] text-gray-800 font-semibold">
+      <span className="inline-block w-[100px] text-gray-600 font-medium">Address:</span>
+      <span className="text-gray-900 font-normal">{orderDetails?.addressInfo?.address}</span>
+    </span>
+    <span className="block mb-2 text-[15px] text-gray-800 font-semibold">
+      <span className="inline-block w-[100px] text-gray-600 font-medium">City:</span>
+      <span className="text-gray-900 font-normal">{orderDetails?.addressInfo?.city}</span>
+    </span>
+    <span className="block mb-2 text-[15px] text-gray-800 font-semibold">
+      <span className="inline-block w-[100px] text-gray-600 font-medium">Pincode:</span>
+      <span className="text-gray-900 font-normal">{orderDetails?.addressInfo?.pincode}</span>
+    </span>
+    <span className="block mb-2 text-[15px] text-gray-800 font-semibold">
+      <span className="inline-block w-[100px] text-gray-600 font-medium">Phone:</span>
+      <span className="text-gray-900 font-normal">{orderDetails?.addressInfo?.phone}</span>
+    </span>
+    <span className="block mb-2 text-[15px] text-gray-800 font-semibold">
+      <span className="inline-block w-[100px] text-gray-600 font-medium">Notes:</span>
+      <span className="text-gray-900 font-normal">{orderDetails?.addressInfo?.notes}</span>
+    </span>
+  </div>
+</div>
+
+
+
+        {/* ✅ Status Update Form */}
         <div>
           <CommonForm
             formControls={[
@@ -142,3 +190,5 @@ function AdminOrderDetailsView({ orderDetails }) {
 }
 
 export default AdminOrderDetailsView;
+
+
