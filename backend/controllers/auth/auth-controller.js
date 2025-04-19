@@ -1,120 +1,61 @@
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
-// const User = require("../../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require('../../models/UserCollection');
 
-// //register
-// const registerUser = async (req, res) => {
-//   const { userName, email, password } = req.body;
 
-//   try {
-//     const checkUser = await User.findOne({ email });
-//     if (checkUser)
-//       return res.json({
-//         success: false,
-//         message: "User Already exists with the same email! Please try again",
-//       });
+const google = async (req, res, next) => {
+    const { email, name, photoURL } = req.body;
+    try {
+      const user = await User.findOne({ email });
+      if (user) {
+        const token = jwt.sign(
+          { id: user._id, isAdmin: user.isAdmin },
+          process.env.SECRETE_KEY,
+          {
+            expiresIn: "24h",
+          }
+        );
+        const { password, ...rest } = user._doc;
+        res
+          .status(200)
+          .cookie("access_token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000,
+          })
+          .json(rest);
+      } else {
+        const generatedPassword =
+          Math.random().toString(36).slice(-8) +
+          Math.random().toString(36).slice(-8);
+        const hashedPassword = bcrypt.hashSync(generatedPassword, 10);
+        const newUser = new User({
+          fullName:
+            name.toLowerCase().split(" ").join("") +
+            Math.random().toString(9).slice(-4),
+          email,
+          password: hashedPassword,
+          photoUrl: photoURL,
+        });
+        await newUser.save();
+        const token = jwt.sign(
+          { id: newUser._id, isAdmin: newUser.role === 'admin' },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: "24h",
+          }
+        );
+        const { password, ...rest } = newUser._doc;
+        res
+          .status(200)
+          .cookie("access_token", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000,
+          })
+          .json(rest);
+      }
+    } catch (error) {
+      next(error);
+    }
+  };
 
-//     const hashPassword = await bcrypt.hash(password, 12);
-//     const newUser = new User({
-//       userName,
-//       email,
-//       password: hashPassword,
-//     });
-
-//     await newUser.save();
-//     res.status(200).json({
-//       success: true,
-//       message: "Registration successful",
-//     });
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).json({
-//       success: false,
-//       message: "Some error occured",
-//     });
-//   }
-// };
-
-// //login
-// const loginUser = async (req, res) => {
-//   const { email, password } = req.body;
-
-//   try {
-//     const checkUser = await User.findOne({ email });
-//     if (!checkUser)
-//       return res.json({
-//         success: false,
-//         message: "User doesn't exists! Please register first",
-//       });
-
-//     const checkPasswordMatch = await bcrypt.compare(
-//       password,
-//       checkUser.password
-//     );
-//     if (!checkPasswordMatch)
-//       return res.json({
-//         success: false,
-//         message: "Incorrect password! Please try again",
-//       });
-
-//     const token = jwt.sign(
-//       {
-//         id: checkUser._id,
-//         role: checkUser.role,
-//         email: checkUser.email,
-//         userName: checkUser.userName,
-//       },
-//       "CLIENT_SECRET_KEY",
-//       { expiresIn: "60m" }
-//     );
-
-//     res.cookie("token", token, { httpOnly: true, secure: false }).json({
-//       success: true,
-//       message: "Logged in successfully",
-//       user: {
-//         email: checkUser.email,
-//         role: checkUser.role,
-//         id: checkUser._id,
-//         userName: checkUser.userName,
-//       },
-//     });
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).json({
-//       success: false,
-//       message: "Some error occured",
-//     });
-//   }
-// };
-
-// //logout
-
-// const logoutUser = (req, res) => {
-//   res.clearCookie("token").json({
-//     success: true,
-//     message: "Logged out successfully!",
-//   });
-// };
-
-// //auth middleware
-// const authMiddleware = async (req, res, next) => {
-//   const token = req.cookies.token;
-//   if (!token)
-//     return res.status(401).json({
-//       success: false,
-//       message: "Unauthorised user!",
-//     });
-
-//   try {
-//     const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
-//     req.user = decoded;
-//     next();
-//   } catch (error) {
-//     res.status(401).json({
-//       success: false,
-//       message: "Unauthorised user!",
-//     });
-//   }
-// };
-
-// module.exports = { registerUser, loginUser, logoutUser, authMiddleware };
+module.exports = {  google};

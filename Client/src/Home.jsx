@@ -1,6 +1,5 @@
 import React from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import IntroSection from './IntroSection/IntroSection2.jsx';
+import IntroSection from './IntroSection/IntroSection.jsx';
 import AdvertisingSection from './AdvertisingSection/AdvertisingSection.jsx';
 
 const Home = () => {

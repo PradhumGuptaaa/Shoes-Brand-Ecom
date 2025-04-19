@@ -58,7 +58,7 @@ const Section1 = () => {
           <div className="crow">
             <div className="ccircle"></div>
             <div className="ccapsule">
-              behance
+              Discount
             </div>
           </div>
           <div id="elem">

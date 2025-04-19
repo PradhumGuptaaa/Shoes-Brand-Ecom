@@ -141,14 +141,14 @@ const UserCartWrapper = ({ setOpenCartSheet }) => {
   return (
     <SheetContent
       side="right"
-      className="w-full sm:w-[90%] md:w-[600px] lg:w-[640px] max-w-[640px] overflow-y-auto px-4 sm:px-6 py-6"
+      className="w-full sm:w-[90%] md:w-[600px] lg:w-[640px] max-w-[640px] overflow-y-auto px-4 sm:px-6 py-6 bg-white "
     >
       <SheetHeader>
         <SheetTitle className="text-xl font-bold">Your Cart</SheetTitle>
         <SheetDescription>Review your items before checkout.</SheetDescription>
       </SheetHeader>
 
-      <div className="flex flex-col mt-6 gap-4">
+      <div className="flex flex-col mt-6 gap-4 bg-white ">
         {cartItems?.items?.length > 0 ? (
           cartItems.items.map((item, index) => (
             <UserCartItemsContent
@@ -168,7 +168,7 @@ const UserCartWrapper = ({ setOpenCartSheet }) => {
             <span>${totalAmount.toFixed(2)}</span>
           </div>
 
-          <Button onClick={handleCheckoutClick} className="w-full">
+          <Button onClick={handleCheckoutClick} className="w-full bg-black text-white hover:bg-[#ff266e]">
             Proceed to Checkout
           </Button>
         </div>

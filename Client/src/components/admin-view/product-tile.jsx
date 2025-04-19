@@ -13,7 +13,7 @@ function AdminProductTile({
   console.log("Sale Price:", product?.salePrice);
 
   return (
-    <Card className="w-full max-w-sm mx-auto shadow-lg">
+    <Card className="w-full max-w-sm mx-auto shadow-lg bg-white">
       <div>
         <div className="relative">
           <img

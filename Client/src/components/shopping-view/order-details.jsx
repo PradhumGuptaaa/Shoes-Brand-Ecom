@@ -7,7 +7,7 @@ function ShoppingOrderDetailsView({ orderDetails }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   return (
-    <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto text-black">
+    <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto text-black bg-white">
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">
@@ -50,7 +50,7 @@ function ShoppingOrderDetailsView({ orderDetails }) {
 
         <Separator />
 
-        <div className="grid gap-4">
+        <div className="grid gap-4 bg-white">
           <div className="font-semibold text-lg text-gray-800">Order Details</div>
           <ul className="grid gap-3">
             {orderDetails?.cartItems && orderDetails.cartItems.length > 0 ? (

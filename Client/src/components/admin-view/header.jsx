@@ -56,36 +56,35 @@ import axios from "axios";
 
 function AdminHeader({ setOpen }) {
   const navigate = useNavigate();
-
   const handleLogout = async () => {
     try {
-      // Axios call with credentials (for cookies)
       const response = await axios.post(
         "http://localhost:5000/auth/logout",
         {},
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true, // Important for cookie-based auth
+          withCredentials: true,
         }
       );
-
       if (response.status === 200) {
-        // Remove token from localStorage
         localStorage.removeItem("token");
-        localStorage.removeItem("user"); // If you're storing user as well
+        localStorage.removeItem("user");
+        localStorage.removeItem("isLoggedIn");
 
-        // Navigate to home
-        navigate("/");
-      } else {
+        navigate("/", { replace: true });  // try with replace
+        window.location.href = "/";        // fallback in case React Router fails
+      }
+      else {
+        console.warn("Unexpected response:", response);
         alert("Logout failed. Please try again.");
       }
     } catch (error) {
       console.error("Logout Error:", error);
-      alert("Something went wrong!");
+
+      // You can show a more detailed error to the user if needed
+      alert("Logout failed. Server might be down or endpoint missing.");
     }
   };
+
 
   return (
     <header className="flex items-center justify-between px-4 py-3 bg-background border-b">

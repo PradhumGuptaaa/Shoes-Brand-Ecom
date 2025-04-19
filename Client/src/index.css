@@ -1,5 +1,9 @@
 @import url('https://fonts.cdnfonts.com/css/rangile');
 
+
+@import url('https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Ramaraja&family=Ribeye&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -117,8 +121,17 @@ body {
   }
 
   .special-font b {
-     font-family: "general"; /*//zentry */
+    font-family: "Ribeye", serif;
     font-feature-settings: "ss01" on;
+  }
+  .logo {
+    font-family: "Lavishly Yours", cursive;
+    font-weight: 500;
+  }
+  .logo-special{
+    font-family: "Ramaraja", serif;
+    font-weight: 400;
+  
   }
 
   .hero-heading {
@@ -336,13 +349,3 @@ body {
   }
 }
 
-
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}

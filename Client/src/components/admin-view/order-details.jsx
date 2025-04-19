@@ -53,7 +53,7 @@ function AdminOrderDetailsView({ orderDetails }) {
   }
 
   return (
-    <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto text-black">
+    <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto text-black bg-white">
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">
@@ -85,7 +85,7 @@ function AdminOrderDetailsView({ orderDetails }) {
                     ? "bg-green-500"
                     : orderDetails?.orderStatus === "rejected"
                     ? "bg-red-600"
-                    : "bg-black"
+                    : "bg-black text-white"
                 }`}
               >
                 {orderDetails?.orderStatus}

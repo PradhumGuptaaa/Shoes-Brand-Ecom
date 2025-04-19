@@ -148,10 +148,11 @@
     }, [productDetails]);
 
     return (
-      <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
+      <div className=" bg-[#ff266e] ">
+      <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-5  border-t-2 ">
         <ProductFilter filters={filters} handleFilter={handleFilter} />
-        <div className="bg-background w-full rounded-lg shadow-sm">
-          <div className="p-4 border-b flex items-center justify-between">
+        <div className="bg-background w-full rounded-lg shadow-sm bg-white mt-[10vh]">
+          <div className="p-4 border-b flex flex-wrap items-center justify-between">
             <h2 className="text-lg font-extrabold">All Products</h2>
             <div className="flex items-center gap-3">
               <span className="text-muted-foreground">
@@ -159,7 +160,7 @@
               </span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="flex items-center gap-1">
+                  <Button variant="outline" size="sm" className="flex items-center gap-1 text-black">
                     <ArrowUpDownIcon className="h-4 w-4" />
                     <span>
                       {sortOptions.find((s) => s.id === sort)?.label || "Sort by"}
@@ -196,6 +197,7 @@
           setOpen={setOpenDetailsDialog}
           productDetails={productDetails}
         />
+      </div>
       </div>
     );
   }

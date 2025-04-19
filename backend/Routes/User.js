@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const UserCollection = require('../models/UserCollection');
 const { JWTmiddelware, createToken } = require('../jwt');
+const { google } = require('../controllers/auth/auth-controller');
 const router = express.Router();
 
 // ✅ Register route
@@ -62,13 +63,12 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/auth/logout", (req, res) => {
-    res.clearCookie("token", {
-      httpOnly: true,
-      sameSite: "Lax",
-      secure: false, // Set to true in production (with HTTPS)
-    });
-    res.status(200).json({ message: "Logged out" });
+router.post("/google",google);
+
+// routes/auth.js
+router.post('/logout', (req, res) => {
+    res.clearCookie("token");
+    return res.status(200).json({ message: "Logged out successfully" });
   });
   
 

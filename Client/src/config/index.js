@@ -72,9 +72,8 @@ export const addProductFormElements = [
       { id: "nike", label: "Nike" },
       { id: "adidas", label: "Adidas" },
       { id: "puma", label: "Puma" },
-      { id: "sports", label: "sports's" },
+      { id: "campus", label: "Campus" },
       { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
     ],
   },
   {
@@ -139,14 +138,13 @@ export const categoryOptionsMap = {
   women: "Women",
   kids: "Kids",
   accessories: "Accessories",
-  footwear: "Footwear",
 };
 
 export const brandOptionsMap = {
   nike: "Nike",
   adidas: "Adidas",
   puma: "Puma",
-  levi: "Levi",
+  zara: "Zara",
   
   
 };
@@ -163,7 +161,7 @@ export const filterOptions = {
     { id: "adidas", label: "Adidas" },
     { id: "puma", label: "Puma" },
     { id: "campus", label: "campus" },
-    { id: "Skachers", label: "Zara" },
+    { id: "zara", label: "Zara" },
    
   ],
 };
