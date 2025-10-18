@@ -1,67 +1,56 @@
 const express = require('express');
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-const db = require('./db');
-const bodyParser = require('body-parser');
-require('dotenv').config();
-const UserCollection = require('./models/UserCollection');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const path = require('path');
+require('dotenv').config();
+
+// Initialize DB connection
+require('./db');
+
 const app = express();
-// app.use(cors());
 
-
-
-app.use(
-  cors({
-    origin: "http://localhost:5173", // ✅ Frontend origin
-    credentials: true,              // ✅ Important for cookies
-  })
-);
-
+// Middleware - CORS updated for production
+app.use(cors({
+    origin: [
+        'https://your-frontend-vercel-url.vercel.app', // यह URL आपको frontend deploy के बाद मिलेगा
+        'http://localhost:3000',
+        'http://localhost:5173'
+    ],
+    credentials: true
+}));
 app.use(cookieParser());
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const PORT = process.env.PORT || 3000;
-app.use(express.json());  // For parsing application/json
+// Routes
+// Auth and user routes
+const userRoutes = require('./Routes/User');
+app.use('/api/auth', userRoutes);
 
-// User Route
-const UserRoute = require("./Routes/User");
-app.use('/auth', UserRoute);
+// Shop routes
+app.use('/api/shop/products', require('./Routes/shop/products-routes'));
+app.use('/api/shop/search', require('./Routes/shop/search-routes'));
+app.use('/api/shop/review', require('./Routes/shop/review-routes'));
+app.use('/api/shop/orders', require('./Routes/shop/order-routes'));
+app.use('/api/shop/cart', require('./Routes/shop/cart-routes'));
+app.use('/api/shop/address', require('./Routes/shop/address-routes'));
 
-const adminProductsRouter = require("./Routes/admin/products-routes");
-app.use("/api/admin/products", adminProductsRouter);
+// Admin routes
+app.use('/api/admin/products', require('./Routes/admin/products-routes'));
+app.use('/api/admin/orders', require('./Routes/admin/order-routes'));
 
-const adminOrderRouter = require("./Routes/admin/order-routes");
-app.use("/api/admin/orders", adminOrderRouter);
+// Common routes
+app.use('/api/common/feature', require('./Routes/common/feature-routes'));
 
-
-const shopProductsRouter = require("./Routes/shop/products-routes");
-app.use("/api/shop/products", shopProductsRouter);
-
-
-const shopCartRouter = require("./Routes/shop/cart-routes");
-app.use("/api/shop/cart", shopCartRouter);
-
-const shopAddressRouter = require("./Routes/shop/address-routes");
-app.use("/api/shop/address", shopAddressRouter);
-
-const shopOrderRouter = require("./Routes/shop/order-routes");
-app.use("/api/shop/order", shopOrderRouter);
-
-const shopSearchRouter = require("./Routes/shop/search-routes");
-app.use("/api/shop/search", shopSearchRouter);
-
-const shopReviewRouter = require("./Routes/shop/review-routes");
-app.use("/api/shop/review", shopReviewRouter);
-
-
-const commonFeatureRouter = require("./Routes/common/feature-routes");
-app.use("/api/common/feature", commonFeatureRouter);
-
-app.get('/', function (req, res) {
-    res.send("hello world");
-
+// Health check
+app.get('/health', (_req, res) => {
+    res.status(200).json({ status: 'ok' });
 });
 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`server is running at ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
+
+
