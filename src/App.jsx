@@ -2,22 +2,22 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './Navbar/Nav.jsx';
 import AdminLayout from "./components/admin-view/layout";
-import AdminDashboard from "./pages/admin-view/Dashboard.jsx";
-import AdminProducts from "./pages/admin-view/Products.jsx";
-import AdminOrders from "./pages/admin-view/Orders.jsx";
-import AdminFeatures from "./pages/admin-view/Features.jsx";
+import AdminDashboard from "./Pages/admin-view/Dashboard.jsx";
+import AdminProducts from "./Pages/admin-view/Products.jsx";
+import AdminOrders from "./Pages/admin-view/Orders.jsx";
+import AdminFeatures from "./Pages/admin-view/Features.jsx";
 
-import Ai from './pages/Ai.jsx';
-import ShoppingListing from "./pages/listing.jsx";
-import ShoppingCart from "./pages/ShoppingCart.jsx";
+import Ai from './Pages/Ai.jsx';
+import ShoppingListing from "./Pages/Listing.jsx";
+import ShoppingCart from "./Pages/ShoppingCart.jsx";
 
-import ShoppingCheckout from "@/pages/shopping-view/Checkout.jsx";
-import ShoppingAccount from "@/pages/shopping-view/Account.jsx";
-import PaypalReturnPage from "@/pages/shopping-view/Paypal-return.jsx";
-import PaymentSuccessPage from "@/pages/shopping-view/Payment-success.jsx";
+import ShoppingCheckout from "@/Pages/shopping-view/Checkout.jsx";
+import ShoppingAccount from "@/Pages/shopping-view/Account.jsx";
+import PaypalReturnPage from "@/Pages/shopping-view/Paypal-return.jsx";
+import PaymentSuccessPage from "@/Pages/shopping-view/Payment-success.jsx";
 
 import Home from './Home.jsx';
-import Login from './pages/LoginPage.jsx';
+import Login from './Pages/LoginPage.jsx';
 import Footers from './Footer/Footer.jsx';
 
 // 💡 Layout wrapper to conditionally show/hide Nav and Footer
