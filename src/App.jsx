@@ -8,7 +8,7 @@ import AdminOrders from "./Pages/admin-view/Orders.jsx";
 import AdminFeatures from "./Pages/admin-view/Features.jsx";
 
 import Ai from './Pages/Ai.jsx';
-import ShoppingListing from "./Pages/Listing.jsx";
+import ShoppingListing from "./Pages/listing.jsx";
 import ShoppingCart from "./Pages/ShoppingCart.jsx";
 
 import ShoppingCheckout from "@/Pages/shopping-view/Checkout.jsx";
