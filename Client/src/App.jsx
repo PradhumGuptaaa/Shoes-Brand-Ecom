@@ -2,23 +2,23 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './Navbar/Nav.jsx';
 import AdminLayout from "./components/admin-view/layout";
-import AdminDashboard from "./Pages/admin-view/dashboard";
-import AdminProducts from "./Pages/admin-view/products";
-import AdminOrders from "./Pages/admin-view/orders";
-import AdminFeatures from "./Pages/admin-view/features.jsx";
+import AdminDashboard from "./Pages/admin-view/Dashboard.jsx";
+import AdminProducts from "./Pages/admin-view/Products.jsx";
+import AdminOrders from "./Pages/admin-view/Orders.jsx";
+import AdminFeatures from "./Pages/admin-view/Features.jsx";
 
-import Ai from './Pages/Ai.jsx'
+import Ai from './Pages/Ai.jsx';
 import ShoppingListing from "./Pages/listing.jsx";
-import Shoppingcart from "./Pages/ShoppingCart.jsx";
-import ShoppingCheckout from "./pages/shopping-view/checkout";
-import ShoppingAccount from "./pages/shopping-view/account";
-import PaypalReturnPage from "./pages/shopping-view/paypal-return";
-import PaymentSuccessPage from "./pages/shopping-view/payment-success";
+import ShoppingCart from "./Pages/ShoppingCart.jsx";
+
+import ShoppingCheckout from "@/Pages/shopping-view/Checkout.jsx";
+import ShoppingAccount from "@/Pages/shopping-view/Account.jsx";
+import PaypalReturnPage from "@/Pages/shopping-view/Paypal-return.jsx";
+import PaymentSuccessPage from "@/Pages/shopping-view/Payment-success.jsx";
 
 import Home from './Home.jsx';
 import Login from './Pages/LoginPage.jsx';
 import Footers from './Footer/Footer.jsx';
-
 
 // 💡 Layout wrapper to conditionally show/hide Nav and Footer
 const LayoutWrapper = ({ children }) => {
@@ -45,8 +45,8 @@ const App = () => {
           {/* Shopping Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<ShoppingListing />} />
-          <Route path="/cart" element={<Shoppingcart />} />
-          <Route path="/Ai" element={<Ai/>} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/Ai" element={<Ai />} />
           <Route path="/checkout" element={<ShoppingCheckout />} />
           <Route path="/paypal-return" element={<PaypalReturnPage />} />
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
