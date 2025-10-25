@@ -119,7 +119,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "../ui/Table";
 import ShoppingOrderDetailsView from "./OrderDetails";
 import { useDispatch, useSelector } from "react-redux";
 import {
