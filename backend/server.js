@@ -13,7 +13,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // ✅ Frontend origin
+    origin: 'https://shoes-brand-ecom.vercel.app',
+    // origin: "http://localhost:5173", // ✅ Frontend origin
     credentials: true,              // ✅ Important for cookies
   })
 );
