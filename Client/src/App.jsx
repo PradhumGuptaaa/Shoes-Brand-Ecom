@@ -1,20 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './Navbar/Nav.jsx';
-import AdminLayout from "./components/admin-view/Layout";
+import AdminLayout from "./components/admin-view/Layout.jsx";
 import AdminDashboard from "./Pages/admin-view/Dashboard.jsx";
 import AdminProducts from "./Pages/admin-view/Products.jsx";
 import AdminOrders from "./Pages/admin-view/Orders.jsx";
 import AdminFeatures from "./Pages/admin-view/Features.jsx";
 
 import Ai from './Pages/Ai.jsx';
-import ShoppingListing from "./Pages/listing.jsx";
+import ShoppingListing from "./Pages/Listing.jsx";
 import ShoppingCart from "./Pages/ShoppingCart.jsx";
 
 import ShoppingCheckout from "@/Pages/shopping-view/Checkout.jsx";
 import ShoppingAccount from "@/Pages/shopping-view/Account.jsx";
-import PaypalReturnPage from "@/Pages/shopping-view/Paypal-return.jsx";
-import PaymentSuccessPage from "@/Pages/shopping-view/Payment-success.jsx";
+import PaypalReturnPage from "@/Pages/shopping-view/PaypalReturn.jsx";
+import PaymentSuccessPage from "@/Pages/shopping-view/PaymentSuccess.jsx";
 
 import Home from './Home.jsx';
 import Login from './Pages/LoginPage.jsx';

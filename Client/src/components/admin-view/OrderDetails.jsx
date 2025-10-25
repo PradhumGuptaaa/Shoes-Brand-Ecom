@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import CommonForm from "../common/form";
-import { DialogContent } from "../ui/dialog";
-import { Label } from "../ui/label";
-import { Separator } from "../ui/separator";
-import { Badge } from "../ui/badge";
+import CommonForm from "../common/Form";
+import { DialogContent } from "../ui/Dialog";
+import { Label } from "../ui/Label";
+import { Separator } from "../ui/Separator";
+import { Badge } from "../ui/Badge";
 import { useDispatch } from "react-redux";
 import {
   getAllOrdersForAdmin,
   getOrderDetailsForAdmin,
   updateOrderStatus,
 } from "@/store/admin/order-slice";
-import { useToast } from "@/components/ui/useToast";
+import { useToast } from "@/components/ui/use-toast";
 
 const initialFormData = {
   status: "",

@@ -7,11 +7,11 @@ import {
 } from "flowbite-react";
 
 import gsap from "gsap";
-import { Avatar, AvatarFallback } from "../components/ui/avatar";
+import { Avatar, AvatarFallback } from "../components/ui/Avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { useWindowScroll } from 'react-use';
-import UserCartWrapper from "../components/shopping-view/cart-wrapper";
+import UserCartWrapper from "../components/shopping-view/CartWrapper";
 import {
   Link,
   // useLocation,
@@ -25,8 +25,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "../components/ui/sheet";
+} from "../components/ui/DropdownMenu";
+import { Sheet, SheetContent, SheetTrigger } from "../components/ui/Sheet";
 import { logoutUser } from "@/store/auth-slice";
 import { fetchCartItems } from "@/store/shop/cart-slice";
 import { TiLocationArrow } from "react-icons/ti";
@@ -107,21 +107,13 @@ const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login state
-  //edit
-  const { userData } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.auth);
   const navContainerRef = useRef(null);
   const { y: currentScrollY } = useWindowScroll();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-
-    //edit
-
-    const loggedInStatus = localStorage.getItem('isLoggedIn');
-    if (loggedInStatus === 'true') {
-      setIsLoggedIn(true);
-    }
 
 
     if (currentScrollY === 0) {
@@ -146,38 +138,10 @@ const Nav = () => {
     });
   }, [isNavVisible]);
 
-// edit
-
-  const handleLoginClick = () => {
-    setIsLoggedIn(true);
-    setIsNavVisible(!isNavVisible); // Toggle nav visibility when logged in
-    localStorage.setItem('isLoggedIn', 'true'); // Persist the login status
-  };
-
-  const handleLogoutClick = () => {
-    setIsLoggedIn(false);
-    setIsNavVisible(true); // Make sure the nav is visible after logout
-    localStorage.setItem('isLoggedIn', 'false'); // Clear the login status
-  };
-
-  const handleLogout = async () => {
-    try {
-      const response = await axios.post("http://localhost:5000/auth/logout", {}, {
-        withCredentials: true,
-      });
-
-      if (response.status === 200) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        localStorage.removeItem("isLoggedIn");
-        navigate("/");
-      } else {
-        alert("Logout failed. Please try again.");
-      }
-    } catch (error) {
-      console.error("Logout Error:", error);
-      alert("Something went wrong!");
-    }
+  const handleLogout = () => {
+    dispatch(logoutUser()).then(() => {
+      navigate("/");
+    });
   };
 
   return (
@@ -221,7 +185,7 @@ const Nav = () => {
 
               {/* Conditionally render Login/Logout or User Icon */}
 
-              {isLoggedIn ? (
+              {user ? (
                 <Dropdown
                   arrowIcon={false}
                   inline
@@ -233,15 +197,15 @@ const Nav = () => {
                   }
                 >
                   <DropdownHeader>
-                    <span className="block">@{userData.fullName}</span>
-                    <span className="block truncate">{userData.email}</span>
+                    <span className="block">@{user?.userName || 'User'}</span>
+                    <span className="block truncate">{user?.email || ''}</span>
                   </DropdownHeader>
 
                   <Link to={"/account"}>
                     <DropdownItem>Profile</DropdownItem>
                   </Link>
                   <DropdownDivider />
-                  <DropdownItem onClick={() => handleLogoutClick()}>
+                  <DropdownItem onClick={handleLogout}>
                     Sign out
                   </DropdownItem>
                 </Dropdown>
@@ -252,7 +216,7 @@ const Nav = () => {
                     className="custom-class"
                     color="cyan"
                     speed="5s"
-                    onClick={handleLoginClick} outline
+                    outline
                   >
                     Sign in
                   </Button2>
@@ -285,14 +249,15 @@ function HeaderRightContent() {
   const dispatch = useDispatch();
 
   function handleLogout() {
-    dispatch(logoutUser());
+    dispatch(logoutUser()).then(() => {
+      navigate("/");
+    });
   }
 
   useEffect(() => {
     dispatch(fetchCartItems(user?.id));
   }, [dispatch]);
 
-  console.log(cartItems, "pradhum");
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
