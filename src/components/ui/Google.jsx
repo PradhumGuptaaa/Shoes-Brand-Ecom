@@ -17,11 +17,12 @@ export default function Google() {
   
     const handleGoogle=async ()=>{
         const provider=new GoogleAuthProvider();
+        const API_URL = import.meta.env.VITE_API_BASE_URL;
         provider.setCustomParameters({prompt:'select_account'});
 
         try{
             const googleResult=await signInWithPopup(auth,provider);
-            const res=await fetch("http://localhost:5000/auth/google",{
+            const res=await fetch(`${API_URL}/auth/google`,{
                 method:"POST",
                 headers:{'Content-type':'application/json'},
                 body:JSON.stringify({

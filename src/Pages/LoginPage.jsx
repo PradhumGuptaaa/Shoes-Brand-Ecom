@@ -321,6 +321,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const API_URL = import.meta.env.VITE_API_BASE_URL;
 
     // Validate the form
     if (!validateForm()) return;
@@ -329,7 +330,7 @@ const Signup = () => {
       let response, data;
       if (isSignUp) {
         // Sign Up Request
-        response = await fetch("http://localhost:5000/auth/register", {
+        response = await fetch( `${API_URL}/auth/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -351,7 +352,7 @@ const Signup = () => {
         }
       } else {
         // Sign In Request
-        response = await fetch("http://localhost:5000/auth/login", {
+        response = await fetch(`${API_URL}/auth/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -1,10 +1,10 @@
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { Input } from "../ui/Input";
+import { Label } from "../ui/Label";
 import { useEffect, useRef } from "react";
 import { Button } from "../ui/Button";
 import axios from "axios";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "../ui/Skeleton";
 
 function ProductImageUpload({
   imageFile,
@@ -48,11 +48,12 @@ function ProductImageUpload({
   async function uploadImageToCloudinary() {
     setImageLoadingState(true);
     const data = new FormData();
+    const API_URL = import.meta.env.VITE_API_BASE_URL;
     data.append("my_file", imageFile);
   
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/admin/products/upload-image",
+        `${API_URL}/api/admin/products/upload-image`,
         data
       );
       console.log(response, "response");
