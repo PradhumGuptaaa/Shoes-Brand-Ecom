@@ -1,7 +1,7 @@
-import { Badge } from "../ui/badge";
-import { DialogContent } from "../ui/dialog";
-import { Label } from "../ui/label";
-import { Separator } from "../ui/separator";
+import { Badge } from "../ui/Badge";
+import { DialogContent } from "../ui/Dialog";
+import { Label } from "../ui/Label";
+import { Separator } from "../ui/Separator";
 
 function ShoppingOrderDetailsView({ orderDetails }) {
   const user = JSON.parse(localStorage.getItem("user"));
