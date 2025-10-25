@@ -22,7 +22,7 @@ import { logoutUser } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
-import { Label } from "../ui/label";
+import { Label } from "../ui/Label";
 
 function MenuItems() {
   const navigate = useNavigate();

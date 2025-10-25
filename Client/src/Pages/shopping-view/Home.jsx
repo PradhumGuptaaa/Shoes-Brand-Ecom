@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import {
   Airplay,
   BabyIcon,
@@ -13,18 +13,18 @@ import {
   UmbrellaIcon,
   WashingMachine,
 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/Card";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllFilteredProducts,
   fetchProductDetails,
 } from "@/store/shop/products-slice";
-import ShoppingProductTile from "@/components/shopping-view/product-tile";
+import ShoppingProductTile from "@/components/shopping-view/ProductTile";
 import { useNavigate } from "react-router-dom";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { useToast } from "@/components/ui/use-toast";
-import ProductDetailsDialog from "@/components/shopping-view/product-details";
+import ProductDetailsDialog from "@/components/shopping-view/ProductDetails";
 import { getFeatureImages } from "@/store/common-slice";
 
 const categoriesWithIcon = [

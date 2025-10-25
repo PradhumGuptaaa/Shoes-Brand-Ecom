@@ -1,9 +1,9 @@
 import { StarIcon } from "lucide-react";
-import { Avatar, AvatarFallback } from "../ui/avatar";
-import { Button } from "../ui/button";
-import { Dialog, DialogContent } from "../ui/dialog";
-import { Separator } from "../ui/separator";
-import { Input } from "../ui/input";
+import { Avatar, AvatarFallback } from "../ui/Avatar";
+import { Button } from "../ui/Button";
+import { Dialog, DialogContent } from "../ui/Dialog";
+import { Separator } from "../ui/Separator";
+import { Input } from "../ui/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { useToast } from "../ui/use-toast";

@@ -1,13 +1,13 @@
-import ProductImageUpload from "@/components/admin-view/image-upload";
-import AdminProductTile from "@/components/admin-view/product-tile";
-import CommonForm from "@/components/common/form";
-import { Button } from "@/components/ui/button";
+import ProductImageUpload from "@/components/admin-view/Image-upload";
+import AdminProductTile from "@/components/admin-view/Product-tile";
+import CommonForm from "@/components/common/Form";
+import { Button } from "@/components/ui/Button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
+} from "@/components/ui/Sheet";
 import { useToast } from "@/components/ui/use-toast";
 import { addProductFormElements } from "@/config";
 import {

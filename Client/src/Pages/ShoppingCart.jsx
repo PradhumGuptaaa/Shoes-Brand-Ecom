@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Sheet } from "@/components/ui/sheet";
-import UserCartWrapper from "@/components/shopping-view/cart-wrapper";
+import { Sheet } from "@/components/ui/Sheet";
+import UserCartWrapper from "@/components/shopping-view/CartWrapper";
 
 function ShoppingCart() {
   const [open, setOpen] = useState(true); // Change to false if you want the sheet to be closed initially

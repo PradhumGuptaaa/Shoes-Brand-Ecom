@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './Navbar/Nav.jsx';
-import AdminLayout from "./components/admin-view/layout";
+import AdminLayout from "./components/admin-view/Layout";
 import AdminDashboard from "./Pages/admin-view/Dashboard.jsx";
 import AdminProducts from "./Pages/admin-view/Products.jsx";
 import AdminOrders from "./Pages/admin-view/Orders.jsx";
