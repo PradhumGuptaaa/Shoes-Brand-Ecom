@@ -7,10 +7,11 @@ import axios from "axios";
 
 function AdminHeader({ setOpen }) {
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/logout",
+        `${API_URL}/auth/logout`,
         {},
         {
           withCredentials: true,
