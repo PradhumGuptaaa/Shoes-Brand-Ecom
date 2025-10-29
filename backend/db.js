@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-// const  mongoURL= process.env.local_mongoURL
-const mongoURL = "mongodb://localhost:27017/ShoesBrandDB";
+
+// Environment variable se URL lo, agar nahi hai to local use karo
+const mongoURL = process.env.MONGODB_URI || "mongodb://localhost:27017/ShoesBrandDB";
+
 
 mongoose.connect(mongoURL, {
     // useNewUrlParser: true,
